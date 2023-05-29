@@ -1,0 +1,1 @@
+sam-nightly build && sam-nightly deploy --stack-name stack-apis-back-end --capabilities CAPABILITY_NAMED_IAM
