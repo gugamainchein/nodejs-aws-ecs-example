@@ -6,6 +6,11 @@ Parameters:
     Type: String
     Default: validation
 
+  DomainName:
+    Description: A domain name of your application
+    Type: String
+    Default: api-dosystems.darede.com.br
+
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
     Type: String
@@ -296,7 +301,7 @@ Resources:
       # DisableExecuteApiEndpoint: Boolean
       EndpointConfiguration:
         Types:
-          - REGIONAL
+          - EDGE
       Name: api-gtw-demo
 
   APIGTWAuthorizer:
@@ -336,3 +341,14 @@ Resources:
   #   Properties:
   #     RestApiId: !Ref APIGTWService
   #     StageName: production
+
+  Domain:
+    Type: "AWS::Route53::HostedZone"
+    Properties:
+      Name: !Ref DomainName
+
+  # CertificateOfDomain:
+  #   Type: "AWS::CertificateManager::Certificate"
+  #   Properties:
+  #     DomainName: !Ref DomainName
+  #     ValidationMethod: DNS
